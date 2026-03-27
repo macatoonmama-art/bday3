@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🎂💕</title>
+    <link rel="stylesheet" href="birthday.css">
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Background Decorations -->
+        <div class="floating-shapes">
+            <div class="shape shape-1">🎈</div>
+            <div class="shape shape-2">✨</div>
+            <div class="shape shape-3">💕</div>
+            <div class="shape shape-4">🎉</div>
+            <div class="shape shape-5">💗</div>
+            <div class="shape shape-6">🌸</div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Title -->
+            <h1 class="greeting-title">Happy Birthday! 🎂</h1>
+            <p class="greeting-subtitle">You make my heart skip a beat</p>
+
+            <!-- Strawberry Cake -->
+            <div class="cake-container">
+                <canvas id="cakeCanvas" width="300" height="300"></canvas>
+            </div>
+
+            <!-- Interactive Buttons -->
+            <div class="buttons-container">
+                <!-- Message Envelope Button -->
+                <button class="btn btn-message" id="messageBtn">
+                    <span class="btn-icon">💌</span>
+                    <span class="btn-text">Read My Message</span>
+                </button>
+
+                <!-- Video Button -->
+                <button class="btn btn-video" id="videoBtn">
+                    <span class="btn-icon">🎥</span>
+                    <span class="btn-text">Video Greetings</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Envelope Modal -->
+    <div class="modal hidden" id="messageModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <!-- Envelope (Closed) -->
+            <div class="envelope closed" id="envelope">
+                <div class="envelope-flap"></div>
+                <div class="envelope-body"></div>
+                <p class="envelope-text">Click to open 💌</p>
+            </div>
+
+            <!-- Letter (Opened) -->
+            <div class="letter hidden" id="letter">
+                <div class="letter-content">
+                    <h2>My Dearest 💕</h2>
+                    <p>
+                        Today is your special day, and I wanted to take a moment to tell you how much you mean to me.
+                    </p>
+                    <p>
+                        Your smile brightens my day, your laughter fills my heart with joy, and your presence makes everything better.
+                    </p>
+                    <p>
+                        I'm so grateful for every moment we share together. You are truly the sweetest person I know.
+                    </p>
+                    <p>
+                        May your birthday be filled with love, laughter, and all the happiness you deserve.
+                    </p>
+                    <p style="margin-top: 30px; font-style: italic;">
+                        With all my love,<br>
+                        Your special someone 💗
+                    </p>
+                </div>
+                <button class="btn btn-back" id="backBtn">← Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="modal hidden" id="videoModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-video-content">
+            <button class="close-btn" id="closeVideoBtn">✕</button>
+            <div class="video-wrapper">
+                <video id="birthdayVideo" controls>
+                    <source src="assets/birthday-video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="birthday.js"></script>
+</body>
+</html>
