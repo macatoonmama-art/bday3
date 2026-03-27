@@ -387,7 +387,7 @@ function setupEnvelope() {
     const letter = document.getElementById('letter');
     
     if (envelope) {
-        envelope.addEventListener('click', (e) => {
+        const openEnvelope = (e) => {
             e.stopPropagation();
             envelope.classList.add('opened');
             
@@ -396,7 +396,10 @@ function setupEnvelope() {
                 envelope.classList.add('hidden');
                 letter.classList.remove('hidden');
             }, 600);
-        });
+        };
+        
+        envelope.addEventListener('click', openEnvelope);
+        envelope.addEventListener('touchend', openEnvelope);
     }
 }
 
@@ -413,25 +416,34 @@ function setupMessageButton() {
     const backdrop = messageModal ? messageModal.querySelector('.modal-backdrop') : null;
     
     if (messageBtn && messageModal) {
-        messageBtn.addEventListener('click', () => {
+        const openModal = () => {
             messageModal.classList.remove('hidden');
             // Reset envelope and letter
             envelope.classList.remove('opened', 'hidden');
             letter.classList.add('hidden');
-        });
+        };
+        
+        messageBtn.addEventListener('click', openModal);
+        messageBtn.addEventListener('touchend', openModal);
     }
     
     if (backBtn) {
-        backBtn.addEventListener('click', () => {
+        const backHandler = () => {
             letter.classList.add('hidden');
             envelope.classList.remove('hidden');
-        });
+        };
+        
+        backBtn.addEventListener('click', backHandler);
+        backBtn.addEventListener('touchend', backHandler);
     }
     
     if (backdrop) {
-        backdrop.addEventListener('click', () => {
+        const closeModal = () => {
             messageModal.classList.add('hidden');
-        });
+        };
+        
+        backdrop.addEventListener('click', closeModal);
+        backdrop.addEventListener('touchend', closeModal);
     }
 }
 
@@ -443,30 +455,39 @@ function setupVideoButton() {
     const video = document.getElementById('birthdayVideo');
     
     if (videoBtn && videoModal) {
-        videoBtn.addEventListener('click', () => {
+        const openVideo = () => {
             videoModal.classList.remove('hidden');
             if (video) {
                 video.play();
             }
-        });
+        };
+        
+        videoBtn.addEventListener('click', openVideo);
+        videoBtn.addEventListener('touchend', openVideo);
     }
     
     if (closeVideoBtn) {
-        closeVideoBtn.addEventListener('click', () => {
+        const closeVideo = () => {
             videoModal.classList.add('hidden');
             if (video) {
                 video.pause();
             }
-        });
+        };
+        
+        closeVideoBtn.addEventListener('click', closeVideo);
+        closeVideoBtn.addEventListener('touchend', closeVideo);
     }
     
     if (backdrop) {
-        backdrop.addEventListener('click', () => {
+        const closeVideoBackdrop = () => {
             videoModal.classList.add('hidden');
             if (video) {
                 video.pause();
             }
-        });
+        };
+        
+        backdrop.addEventListener('click', closeVideoBackdrop);
+        backdrop.addEventListener('touchend', closeVideoBackdrop);
     }
 }
 
