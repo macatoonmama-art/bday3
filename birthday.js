@@ -500,14 +500,6 @@ function setupKeyboardShortcuts() {
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Draw the cake
-    drawStrawberryCake();
-    
-    // Add smooth animation loop for the cake
-    setInterval(() => {
-        drawStrawberryCake();
-    }, 50); // 20 FPS for smooth animation
-    
     // Setup interactive elements
     setupEnvelope();
     setupMessageButton();
@@ -520,6 +512,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================================
 
 window.addEventListener('resize', () => {
-    drawStrawberryCake();
+    // Responsive handling
 });
 
