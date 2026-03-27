@@ -113,11 +113,12 @@ html, body {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(20px);
     border-radius: 40px;
-    padding: 50px 40px;
+    padding: 30px 25px;
     box-shadow: var(--shadow-lg);
-    max-width: 500px;
-    width: 90%;
+    max-width: 520px;
+    width: 95%;
     animation: slideIn 0.8s ease-out;
+    overflow: visible;
 }
 
 @keyframes slideIn {
@@ -136,11 +137,15 @@ html, body {
    ============================================ */
 
 .greeting-title {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     color: var(--dark-pink);
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    margin-top: 0;
     text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.2);
     animation: bounce 1s ease-in-out;
+    line-height: 1.2;
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
 @keyframes bounce {
@@ -153,9 +158,9 @@ html, body {
 }
 
 .greeting-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--dark-pink);
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     font-weight: 300;
     letter-spacing: 0.5px;
 }
@@ -180,6 +185,20 @@ html, body {
         opacity: 1;
         transform: scale(1);
     }
+}
+
+.cake-image {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 8px 16px rgba(255, 105, 180, 0.3));
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    border-radius: 20px;
+}
+
+.cake-image:hover {
+    transform: scale(1.05);
 }
 
 #cakeCanvas {

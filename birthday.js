@@ -17,297 +17,349 @@ function drawStrawberryCake() {
     // Save context
     ctx.save();
     
-    // ========== BOTTOM CHOCOLATE LAYER ==========
-    // Shadow/depth for bottom layer
+    // Get animation time for smooth animations
+    const time = Date.now() * 0.001;
+    const bounce = Math.sin(time * 2) * 2;
+    
+    // Apply gentle bounce animation to whole cake
+    ctx.translate(150, 150 + bounce);
+    ctx.translate(-150, -150);
+    
+    // ========== BOTTOM LAYER (DARK CHOCOLATE) ==========
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+    ctx.shadowBlur = 15;
+    ctx.shadowOffsetY = 5;
+    
+    // Draw bottom layer body
+    const layer1Gradient = ctx.createLinearGradient(50, 160, 250, 220);
+    layer1Gradient.addColorStop(0, '#6B3410');
+    layer1Gradient.addColorStop(0.5, '#4A2010');
+    layer1Gradient.addColorStop(1, '#3D1A0A');
+    
+    ctx.fillStyle = layer1Gradient;
+    ctx.beginPath();
+    ctx.moveTo(50, 210);
+    ctx.lineTo(50, 160);
+    ctx.bezierCurveTo(50, 140, 70, 130, 150, 130);
+    ctx.bezierCurveTo(230, 130, 250, 140, 250, 160);
+    ctx.lineTo(250, 210);
+    ctx.fill();
+    
+    // Layer 1 top frosting
+    ctx.fillStyle = '#E8B4A8';
+    ctx.beginPath();
+    ctx.ellipse(150, 130, 100, 28, 0, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Frosting swirls on bottom
+    ctx.strokeStyle = '#D4A59D';
+    ctx.lineWidth = 4;
+    ctx.lineCap = 'round';
+    for (let i = 0; i < 8; i++) {
+        const x = 50 + i * 25;
+        const y = 135 + Math.sin(i * 0.5) * 3;
+        ctx.beginPath();
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.stroke();
+    }
+    
+    // ========== MIDDLE LAYER (LIGHT PINK) ==========
     ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
-    ctx.shadowBlur = 8;
+    ctx.shadowBlur = 10;
     ctx.shadowOffsetY = 3;
     
-    // Bottom cake base
-    const bottomGradient = ctx.createLinearGradient(40, 180, 260, 240);
-    bottomGradient.addColorStop(0, '#A0522D');
-    bottomGradient.addColorStop(0.5, '#8B4513');
-    bottomGradient.addColorStop(1, '#654321');
+    const layer2Gradient = ctx.createLinearGradient(55, 90, 245, 150);
+    layer2Gradient.addColorStop(0, '#FF85B3');
+    layer2Gradient.addColorStop(0.5, '#FF6BA6');
+    layer2Gradient.addColorStop(1, '#E84C6F');
     
-    ctx.fillStyle = bottomGradient;
+    ctx.fillStyle = layer2Gradient;
     ctx.beginPath();
-    ctx.moveTo(40, 220);
-    ctx.lineTo(40, 160);
-    ctx.bezierCurveTo(40, 140, 60, 130, 150, 130);
-    ctx.bezierCurveTo(240, 130, 260, 140, 260, 160);
-    ctx.lineTo(260, 220);
+    ctx.moveTo(55, 160);
+    ctx.lineTo(55, 90);
+    ctx.bezierCurveTo(55, 75, 75, 65, 150, 65);
+    ctx.bezierCurveTo(225, 65, 245, 75, 245, 90);
+    ctx.lineTo(245, 160);
     ctx.fill();
     
-    // Bottom layer top ellipse
-    ctx.fillStyle = '#D2691E';
+    // Layer 2 top frosting
+    ctx.fillStyle = '#FFD6E8';
     ctx.beginPath();
-    ctx.ellipse(150, 130, 110, 35, 0, 0, Math.PI * 2);
+    ctx.ellipse(150, 65, 95, 26, 0, 0, Math.PI * 2);
     ctx.fill();
     
-    // Highlight on bottom layer
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
-    ctx.beginPath();
-    ctx.ellipse(120, 120, 80, 20, 0, 0, Math.PI * 2);
-    ctx.fill();
+    // Frosting swirls on middle
+    ctx.strokeStyle = '#FFBEDB';
+    ctx.lineWidth = 5;
+    for (let i = 0; i < 7; i++) {
+        const x = 60 + i * 25;
+        const y = 70 + Math.sin(time + i) * 2;
+        ctx.beginPath();
+        ctx.arc(x, y, 8, 0, Math.PI * 2);
+        ctx.stroke();
+    }
     
+    // ========== TOP LAYER (WHIPPED CREAM) ==========
     ctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
-    ctx.shadowBlur = 6;
+    ctx.shadowBlur = 8;
     ctx.shadowOffsetY = 2;
     
-    // ========== MIDDLE PINK LAYER ==========
-    const middleGradient = ctx.createLinearGradient(45, 100, 255, 160);
-    middleGradient.addColorStop(0, '#FF69B4');
-    middleGradient.addColorStop(0.5, '#FF85C1');
-    middleGradient.addColorStop(1, '#FF69B4');
+    const layer3Gradient = ctx.createLinearGradient(60, 20, 240, 60);
+    layer3Gradient.addColorStop(0, '#FFFFFF');
+    layer3Gradient.addColorStop(0.5, '#FFFBF0');
+    layer3Gradient.addColorStop(1, '#FFFACD');
     
-    ctx.fillStyle = middleGradient;
+    ctx.fillStyle = layer3Gradient;
     ctx.beginPath();
-    ctx.moveTo(45, 160);
-    ctx.lineTo(45, 100);
-    ctx.bezierCurveTo(45, 85, 65, 75, 150, 75);
-    ctx.bezierCurveTo(235, 75, 255, 85, 255, 100);
-    ctx.lineTo(255, 160);
+    ctx.moveTo(60, 45);
+    ctx.lineTo(60, 15);
+    ctx.bezierCurveTo(60, 5, 80, 0, 150, 0);
+    ctx.bezierCurveTo(220, 0, 240, 5, 240, 15);
+    ctx.lineTo(240, 45);
     ctx.fill();
     
-    // Middle layer top ellipse
-    ctx.fillStyle = '#FFB6D9';
+    // Top frosting with fluffy texture
+    ctx.fillStyle = '#FFFBF0';
     ctx.beginPath();
-    ctx.ellipse(150, 75, 105, 32, 0, 0, Math.PI * 2);
+    ctx.ellipse(150, 15, 85, 20, 0, 0, Math.PI * 2);
     ctx.fill();
     
-    // Highlight on middle layer
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+    // Frosting dollops/swirls on top (animated)
+    ctx.fillStyle = '#FFFACD';
+    for (let i = 0; i < 8; i++) {
+        const x = 65 + i * 22;
+        const bobble = Math.sin(time * 3 + i) * 2;
+        ctx.beginPath();
+        ctx.ellipse(x, 25 + bobble, 7, 8, 0, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    
+    // Top shine
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
     ctx.beginPath();
-    ctx.ellipse(115, 70, 80, 22, 0, 0, Math.PI * 2);
-    ctx.fill();
-    
-    // ========== TOP CREAM LAYER ==========
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.15)';
-    ctx.shadowBlur = 4;
-    ctx.shadowOffsetY = 1;
-    
-    const creamGradient = ctx.createLinearGradient(50, 30, 250, 70);
-    creamGradient.addColorStop(0, '#FFFACD');
-    creamGradient.addColorStop(0.5, '#FFFFFF');
-    creamGradient.addColorStop(1, '#FFFACD');
-    
-    ctx.fillStyle = creamGradient;
-    ctx.beginPath();
-    ctx.moveTo(50, 50);
-    ctx.lineTo(50, 20);
-    ctx.bezierCurveTo(50, 10, 70, 5, 150, 5);
-    ctx.bezierCurveTo(230, 5, 250, 10, 250, 20);
-    ctx.lineTo(250, 50);
-    ctx.fill();
-    
-    // Cream top
-    ctx.fillStyle = '#FFFFFF';
-    ctx.beginPath();
-    ctx.ellipse(150, 20, 95, 20, 0, 0, Math.PI * 2);
-    ctx.fill();
-    
-    // Cream frosting swirl
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.arc(130, 25, 35, 0, Math.PI * 2);
-    ctx.stroke();
-    
-    ctx.beginPath();
-    ctx.arc(170, 25, 35, 0, Math.PI * 2);
-    ctx.stroke();
-    
-    // Cream highlight
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-    ctx.beginPath();
-    ctx.ellipse(120, 18, 60, 15, 0, 0, Math.PI * 2);
+    ctx.ellipse(130, 8, 50, 12, -Math.PI / 4, 0, Math.PI * 2);
     ctx.fill();
     
     ctx.shadowColor = 'transparent';
     
-    // ========== STRAWBERRIES ==========
-    // Bottom layer strawberries
-    drawStrawberry3D(ctx, 80, 135, 26);
-    drawStrawberry3D(ctx, 150, 140, 26);
-    drawStrawberry3D(ctx, 220, 135, 26);
+    // ========== STRAWBERRIES WITH ANIMATION ==========
+    const strawberries = [
+        { x: 85, y: 125, size: 18 },  // Bottom left
+        { x: 150, y: 130, size: 20 }, // Bottom center
+        { x: 215, y: 125, size: 18 }, // Bottom right
+        { x: 110, y: 70, size: 15 },  // Middle left
+        { x: 190, y: 70, size: 15 },  // Middle right
+        { x: 150, y: 25, size: 14 }   // Top
+    ];
     
-    // Middle layer strawberries
-    drawStrawberry3D(ctx, 95, 85, 22);
-    drawStrawberry3D(ctx, 205, 85, 22);
+    strawberries.forEach((berry, idx) => {
+        const wobbleX = Math.sin(time * 2 + idx * 0.8) * 1.5;
+        const wobbleY = Math.cos(time * 2 + idx * 0.8) * 1;
+        drawStrawberry(ctx, berry.x + wobbleX, berry.y + wobbleY, berry.size, time + idx);
+    });
     
-    // Top layer strawberry
-    drawStrawberry3D(ctx, 150, 32, 20);
+    // ========== CANDLES WITH FLAME ANIMATION ==========
+    const candlePositions = [70, 100, 130, 160, 190];
+    candlePositions.forEach((x, idx) => {
+        drawAnimatedCandle(ctx, x, 45, time + idx);
+    });
     
-    // ========== CANDLES ==========
-    const candleCount = 5;
-    for (let i = 0; i < candleCount; i++) {
-        const x = 90 + (i * 30);
-        drawCandleCute(ctx, x, 42);
-    }
-    
-    // ========== DECORATIVE ELEMENTS ==========
-    drawSparkles3D(ctx);
+    // ========== SPARKLES AND SHINE ==========
+    drawAnimatedSparkles(ctx, time);
     
     ctx.restore();
 }
 
-function drawStrawberry3D(ctx, x, y, size) {
-    // Shadow under strawberry
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.25)';
-    ctx.shadowBlur = 6;
-    ctx.shadowOffsetY = 2;
+function drawStrawberry(ctx, x, y, size, time) {
+    ctx.save();
     
-    // Strawberry body - gradient for 3D effect
-    const strawGradient = ctx.createRadialGradient(x - 2, y - 3, size / 4, x, y, size);
-    strawGradient.addColorStop(0, '#FF6B7A');
-    strawGradient.addColorStop(0.6, '#DC143C');
-    strawGradient.addColorStop(1, '#B22222');
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetY = 3;
     
-    ctx.fillStyle = strawGradient;
+    // Strawberry body with realistic gradient
+    const strawberryGradient = ctx.createRadialGradient(x - size/4, y - size/3, size/6, x, y, size);
+    strawberryGradient.addColorStop(0, '#FF8FA3');
+    strawberryGradient.addColorStop(0.4, '#F73859');
+    strawberryGradient.addColorStop(0.8, '#D90429');
+    strawberryGradient.addColorStop(1, '#8B0000');
+    
+    ctx.fillStyle = strawberryGradient;
     ctx.beginPath();
-    ctx.ellipse(x, y, size / 2, size, 0, 0, Math.PI * 2);
+    ctx.ellipse(x, y, size * 0.8, size * 1.2, 0, 0, Math.PI * 2);
     ctx.fill();
     
-    // Strawberry shine/highlight
-    ctx.fillStyle = 'rgba(255, 200, 200, 0.4)';
+    // Strawberry shine (glossy effect)
+    ctx.fillStyle = 'rgba(255, 200, 210, 0.7)';
     ctx.beginPath();
-    ctx.ellipse(x - size / 4, y - size / 3, size / 3, size / 2.5, 0, 0, Math.PI * 2);
+    ctx.ellipse(x - size * 0.3, y - size * 0.4, size * 0.5, size * 0.6, -Math.PI/5, 0, Math.PI * 2);
     ctx.fill();
     
-    // Strawberry seeds
+    // Secondary shine for extra gloss
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+    ctx.beginPath();
+    ctx.ellipse(x - size * 0.2, y - size * 0.3, size * 0.3, size * 0.4, 0, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Seeds with animation
     ctx.fillStyle = '#FFD700';
-    for (let i = 0; i < 6; i++) {
-        for (let j = 0; j < 4; j++) {
-            const sx = x - size / 2.5 + (i * (size / 3.5));
-            const sy = y - size / 2 + (j * (size / 3));
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 6; j++) {
+            const seedX = x - size * 0.6 + (i * size * 0.2);
+            const seedY = y - size * 0.5 + (j * size * 0.2);
+            const pulse = 1 + Math.sin(time * 3 + i + j) * 0.2;
             ctx.beginPath();
-            ctx.arc(sx, sy, 2.5, 0, Math.PI * 2);
+            ctx.arc(seedX, seedY, 1.5 * pulse, 0, Math.PI * 2);
             ctx.fill();
         }
     }
     
-    // Strawberry leaf - 3D effect
-    const leafGradient = ctx.createLinearGradient(x, y - size - 5, x, y - size - 18);
-    leafGradient.addColorStop(0, '#2ECC71');
-    leafGradient.addColorStop(1, '#27AE60');
+    // Green leaf crown
+    const leafGrad = ctx.createLinearGradient(x, y - size - 2, x, y - size - 18);
+    leafGrad.addColorStop(0, '#52B788');
+    leafGrad.addColorStop(0.5, '#2ECC71');
+    leafGrad.addColorStop(1, '#1B8E4D');
     
-    ctx.fillStyle = leafGradient;
+    ctx.fillStyle = leafGrad;
     ctx.beginPath();
-    ctx.moveTo(x, y - size - 5);
-    ctx.lineTo(x - 10, y - size - 16);
-    ctx.lineTo(x - 5, y - size - 22);
-    ctx.lineTo(x + 5, y - size - 22);
-    ctx.lineTo(x + 10, y - size - 16);
-    ctx.closePath();
-    ctx.fill();
-    
-    // Leaf shine
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
-    ctx.beginPath();
-    ctx.moveTo(x - 2, y - size - 8);
-    ctx.lineTo(x + 3, y - size - 13);
+    // Draw leafy crown
+    for (let i = 0; i < 5; i++) {
+        const angle = (i / 5) * Math.PI * 2 - Math.PI / 2;
+        const leafX = x + Math.cos(angle) * size * 0.6;
+        const leafY = y - size - 5 + Math.sin(angle) * size * 0.4;
+        
+        if (i === 0) {
+            ctx.moveTo(x, y - size - 2);
+        }
+        ctx.lineTo(leafX, leafY);
+    }
     ctx.lineTo(x, y - size - 18);
     ctx.closePath();
     ctx.fill();
     
-    ctx.shadowColor = 'transparent';
+    // Leaf highlight
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+    ctx.beginPath();
+    ctx.ellipse(x - size * 0.2, y - size - 10, size * 0.3, size * 0.5, 0, 0, Math.PI * 2);
+    ctx.fill();
+    
+    ctx.restore();
 }
 
-function drawCandleCute(ctx, x, y) {
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
-    ctx.shadowBlur = 4;
-    ctx.shadowOffsetY = 1;
+function drawAnimatedCandle(ctx, x, y, time) {
+    ctx.save();
     
-    // Candle wax body - gradient
-    const candleGradient = ctx.createLinearGradient(x - 4, y - 15, x + 4, y);
-    candleGradient.addColorStop(0, '#FFFACD');
-    candleGradient.addColorStop(0.5, '#FFF8DC');
-    candleGradient.addColorStop(1, '#FFE4B5');
+    // Candle body shadow
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+    ctx.shadowBlur = 6;
+    ctx.shadowOffsetY = 2;
     
-    ctx.fillStyle = candleGradient;
+    // Candle wax gradient
+    const candleGrad = ctx.createLinearGradient(x - 3, y - 20, x + 3, y);
+    candleGrad.addColorStop(0, '#FFFBF0');
+    candleGrad.addColorStop(0.5, '#FFF8DC');
+    candleGrad.addColorStop(1, '#FFE4B5');
+    
+    ctx.fillStyle = candleGrad;
     ctx.beginPath();
-    ctx.moveTo(x - 4, y - 15);
-    ctx.lineTo(x + 4, y - 15);
-    ctx.quadraticCurveTo(x + 5, y - 10, x + 4.5, y);
-    ctx.lineTo(x - 4.5, y);
-    ctx.quadraticCurveTo(x - 5, y - 10, x - 4, y - 15);
+    ctx.moveTo(x - 3.5, y - 20);
+    ctx.lineTo(x + 3.5, y - 20);
+    ctx.quadraticCurveTo(x + 4, y - 10, x + 3.5, y);
+    ctx.lineTo(x - 3.5, y);
+    ctx.quadraticCurveTo(x - 4, y - 10, x - 3.5, y - 20);
     ctx.fill();
     
     // Candle highlight
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
     ctx.beginPath();
-    ctx.rect(x - 2.5, y - 13, 2, 10);
+    ctx.rect(x - 1.5, y - 18, 1.5, 14);
     ctx.fill();
     
-    // Candle top circle (cute)
+    // Candle top
     ctx.fillStyle = '#FFD700';
     ctx.beginPath();
-    ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.arc(x, y, 4.5, 0, Math.PI * 2);
     ctx.fill();
     
-    // Flame - animated wobbly effect
-    const time = Date.now() * 0.003;
-    const wobble = Math.sin(time + x * 0.05) * 2;
+    // Candle top shine
+    ctx.fillStyle = 'rgba(255, 255, 200, 0.8)';
+    ctx.beginPath();
+    ctx.arc(x - 1, y - 1, 2, 0, Math.PI * 2);
+    ctx.fill();
     
-    // Outer flame (orange)
+    // Animated flame
+    const flameWobble = Math.sin(time * 4) * 3;
+    const flameHeight = 3 + Math.sin(time * 2.5) * 1;
+    
+    // Outer flame (orange) - larger
     ctx.fillStyle = '#FF8C00';
+    ctx.globalAlpha = 0.8;
+    ctx.beginPath();
+    ctx.ellipse(x + flameWobble, y - 12 - flameHeight, 3.5, 9 + flameHeight, 0, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Middle flame (orange-yellow)
+    ctx.fillStyle = '#FFA500';
     ctx.globalAlpha = 0.85;
     ctx.beginPath();
-    ctx.ellipse(x + wobble, y - 12, 4, 10, 0, 0, Math.PI * 2);
+    ctx.ellipse(x + flameWobble * 0.6, y - 13 - flameHeight, 2.5, 7.5 + flameHeight * 0.7, 0, 0, Math.PI * 2);
     ctx.fill();
     
     // Inner flame (yellow)
     ctx.fillStyle = '#FFD700';
     ctx.globalAlpha = 0.9;
     ctx.beginPath();
-    ctx.ellipse(x + wobble * 0.5, y - 13, 2.5, 7, 0, 0, Math.PI * 2);
+    ctx.ellipse(x + flameWobble * 0.3, y - 14 - flameHeight, 1.5, 5 + flameHeight * 0.5, 0, 0, Math.PI * 2);
     ctx.fill();
     
-    // Flame tip (bright)
-    ctx.fillStyle = '#FFFF00';
-    ctx.globalAlpha = 0.8;
+    // Flame tip (bright white-yellow)
+    ctx.fillStyle = '#FFFF99';
+    ctx.globalAlpha = 0.95;
     ctx.beginPath();
-    ctx.arc(x + wobble * 0.5, y - 16, 1.5, 0, Math.PI * 2);
+    ctx.arc(x + flameWobble * 0.2, y - 18 - flameHeight, 1, 0, Math.PI * 2);
     ctx.fill();
     
     ctx.globalAlpha = 1;
-    ctx.shadowColor = 'transparent';
+    ctx.restore();
 }
 
-function drawSparkles3D(ctx) {
-    const time = Date.now() * 0.005;
-    const sparklePositions = [
-        { x: 60, y: 55, base: 1 },
-        { x: 240, y: 75, base: 0.8 },
-        { x: 100, y: 45, base: 1.2 },
-        { x: 200, y: 110, base: 0.9 },
-        { x: 150, y: 35, base: 1.1 },
+function drawAnimatedSparkles(ctx, time) {
+    const sparkles = [
+        { x: 70, y: 50, speed: 1 },
+        { x: 230, y: 70, speed: 0.9 },
+        { x: 100, y: 35, speed: 1.1 },
+        { x: 200, y: 95, speed: 0.8 },
+        { x: 150, y: 25, speed: 1.2 },
+        { x: 80, y: 90, speed: 0.95 },
+        { x: 220, y: 130, speed: 1.05 }
     ];
     
-    sparklePositions.forEach((pos, idx) => {
-        const wobble = Math.sin(time + idx) * 0.5;
-        const scale = 3 + wobble;
+    sparkles.forEach((sparkle, idx) => {
+        const wobble = Math.sin(time * 3 + idx) * 0.5;
+        const scale = 2.5 + wobble;
+        const opacity = 0.6 + Math.sin(time * 2 + idx) * 0.4;
         
-        // Sparkle background glow
-        ctx.fillStyle = 'rgba(255, 215, 0, 0.3)';
+        // Sparkle glow
+        ctx.fillStyle = `rgba(255, 215, 0, ${opacity * 0.4})`;
         ctx.beginPath();
-        ctx.arc(pos.x, pos.y, scale + 3, 0, Math.PI * 2);
+        ctx.arc(sparkle.x, sparkle.y, scale + 3, 0, Math.PI * 2);
         ctx.fill();
         
         // Main sparkle
-        ctx.fillStyle = '#FFD700';
-        ctx.globalAlpha = 0.7 + (Math.sin(time + idx) * 0.2);
+        ctx.fillStyle = `rgba(255, 255, 100, ${opacity})`;
+        ctx.globalAlpha = opacity;
         ctx.beginPath();
-        ctx.arc(pos.x, pos.y, scale, 0, Math.PI * 2);
+        ctx.arc(sparkle.x, sparkle.y, scale, 0, Math.PI * 2);
         ctx.fill();
         
         // Star sparkle
-        ctx.fillStyle = '#FFFF00';
-        ctx.globalAlpha = 0.8;
-        drawStar(ctx, pos.x, pos.y, 5, 2.5, 1.5);
+        ctx.fillStyle = '#FFFF99';
+        ctx.globalAlpha = opacity * 0.9;
+        drawStar(ctx, sparkle.x, sparkle.y, 5, 2, 1);
         ctx.fill();
+        
+        ctx.globalAlpha = 1;
     });
-    ctx.globalAlpha = 1;
 }
 
 function drawStar(ctx, cx, cy, spikes, outerRadius, innerRadius) {
@@ -451,10 +503,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Draw the cake
     drawStrawberryCake();
     
-    // Add animation loop for candles
+    // Add smooth animation loop for the cake
     setInterval(() => {
         drawStrawberryCake();
-    }, 100);
+    }, 50); // 20 FPS for smooth animation
     
     // Setup interactive elements
     setupEnvelope();
