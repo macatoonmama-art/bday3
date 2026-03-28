@@ -394,10 +394,18 @@ html, body {
 }
 
 @media (max-width: 480px) {
+
     .envelope {
         width: 280px;
         height: 180px;
+        margin: 0 auto;
     }
+
+    .envelope::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
 }
 
 .envelope:hover:not(.opened) {
