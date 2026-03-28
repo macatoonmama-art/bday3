@@ -80,15 +80,14 @@ html, body {
    ============================================ */
 
 .greeting-title {
-    font-size: 2.5rem;
-    color: var(--dark-pink);
-    margin-bottom: 15px;
-    margin-top: 0;
-    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.2);
-    animation: bounce 1s ease-in-out;
+    font-family: 'Satisfy', cursive;
+    font-size: 36px;
     line-height: 1.2;
+    text-align: center;
+    padding: 0 10px;
     word-wrap: break-word;
-    word-break: break-word;
+
+    color: #ff69b4; /* pink */
 }
 
 @keyframes bounce {
@@ -518,7 +517,9 @@ html, body {
 }
 
 .letter-content {
-    background: linear-gradient(to bottom, #FFFBF5, #FFFACD);
+    background-image: url('papers.png');
+    background-size: cover;
+    background-position: center;
     border: 2px solid var(--primary-pink);
     border-radius: 20px;
     padding: 40px 35px;
@@ -542,7 +543,7 @@ html, body {
 }
 
 .letter-content h2 {
-    color: var(--dark-pink);
+    color: #000;
     font-size: 2rem;
     margin-bottom: 20px;
     font-family: 'Pacifico', cursive;
