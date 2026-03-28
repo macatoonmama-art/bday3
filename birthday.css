@@ -396,22 +396,24 @@ html, body {
 @media (max-width: 480px) {
 
     .envelope {
-        position: relative
         width: 280px;
         height: 180px;
         margin: 0 auto 30px;
+        position: relative;
     }
 
     .envelope-flap {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    border-left: 140px solid transparent;
-    border-right: 140px solid transparent;
-    border-top: 90px solid var(--primary-pink);
-}
-
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        
+        border-left: 140px solid transparent;
+        border-right: 140px solid transparent;
+        border-top: 90px solid var(--primary-pink);
+        
+        width: 0;
+    }
 }
 
 .envelope:hover:not(.opened) {
