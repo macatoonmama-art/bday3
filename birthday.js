@@ -379,6 +379,59 @@ function drawStar(ctx, cx, cy, spikes, outerRadius, innerRadius) {
 }
 
 // ============================================
+// CONFETTI ANIMATION
+// ============================================
+
+function createConfetti() {
+    const cakeImage = document.querySelector('.cake-image');
+    const rect = cakeImage.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const confettiCount = 40;
+    
+    for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.textContent = '🍓';
+        confetti.style.position = 'fixed';
+        confetti.style.left = centerX + 'px';
+        confetti.style.top = centerY + 'px';
+        confetti.style.fontSize = Math.random() * 15 + 20 + 'px';
+        confetti.style.zIndex = '2000';
+        confetti.style.pointerEvents = 'none';
+        
+        // Random direction for splashing outward
+        const angle = (Math.PI * 2 * i) / confettiCount + (Math.random() - 0.5);
+        const distance = 300 + Math.random() * 200;
+        const velocity = 2 + Math.random() * 2;
+        
+        const keyframes = `
+            @keyframes splash${i} {
+                0% {
+                    transform: translate(0, 0);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        
+        const style = document.createElement('style');
+        style.textContent = keyframes;
+        document.head.appendChild(style);
+        
+        confetti.style.animation = `splash${i} ${velocity}s ease-out forwards`;
+        document.body.appendChild(confetti);
+        
+        setTimeout(() => {
+            confetti.remove();
+            style.remove();
+        }, velocity * 1000);
+    }
+}
+
+// ============================================
 // INTERACTIVE ENVELOPE
 // ============================================
 
@@ -526,7 +579,48 @@ document.addEventListener('DOMContentLoaded', () => {
     setupMessageButton();
     setupVideoButton();
     setupKeyboardShortcuts();
+    setupAudioButton();
+    setupCakeClick();
 });
+
+// ============================================
+// AUDIO BUTTON SETUP
+// ============================================
+
+function setupAudioButton() {
+    const playBtn = document.getElementById('playBtn');
+    const audio = document.getElementById('birthdayAudio');
+    
+    if (playBtn && audio) {
+        playBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playBtn.textContent = '⏸ Pause';
+            } else {
+                audio.pause();
+                playBtn.textContent = '▶ Play this while reading';
+            }
+        });
+        
+        audio.addEventListener('ended', () => {
+            playBtn.textContent = '▶ Play this while reading';
+        });
+    }
+}
+
+// ============================================
+// CAKE CLICK SETUP
+// ============================================
+
+function setupCakeClick() {
+    const cakeImage = document.querySelector('.cake-image');
+    
+    if (cakeImage) {
+        cakeImage.addEventListener('click', () => {
+            createConfetti();
+        });
+    }
+}
 
 // ============================================
 // RESPONSIVE HANDLING

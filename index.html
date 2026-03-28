@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday! 🎂💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=La+Belle+Aurore&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="birthday.css">
 </head>
 <body>
@@ -53,8 +54,10 @@
         <div class="modal-content">
             <!-- Envelope (Closed) -->
             <div class="envelope closed" id="envelope">
+                <div class="envelope-body">
+                    <div class="envelope-flap-triangle"></div>
+                </div>
                 <div class="envelope-flap"></div>
-                <div class="envelope-body"></div>
                 <p class="envelope-text">Click to open 💌</p>
             </div>
 
@@ -62,10 +65,11 @@
             <div class="letter hidden" id="letter">
                 <div class="letter-content">
                     <div class="audio-player-container">
-                        <audio id="birthdayAudio" controls>
+                        <audio id="birthdayAudio">
                             <source src="Carpenters - Close to you.mp3" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
+                        <button class="play-btn" id="playBtn">▶ Play this while reading</button>
                     </div>
                     <h2>My Dearest 💕</h2>
                     <p>
@@ -87,6 +91,7 @@
                 </div>
                 <button class="btn btn-back" id="backBtn">← Back</button>
             </div>
+            <p class="envelope-instruction">Click the envelope to see the message</p>
         </div>
     </div>
 
