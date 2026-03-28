@@ -398,12 +398,13 @@ html, body {
     .envelope {
         width: 280px;
         height: 180px;
-        margin: 0 auto;
+        margin: 0 auto 30px;
     }
 
-    .envelope::before {
-        left: 50%;
-        transform: translateX(-50%);
+    .envelope-flap {
+        border-left: 140px solid transparent;
+        border-right: 140px solid transparent;
+        border-top: 90px solid var(--primary-pink);
     }
 
 }
