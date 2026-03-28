@@ -398,15 +398,20 @@ html, body {
     .envelope {
         width: 280px;
         height: 180px;
-        margin: 0 auto 30px;
+        margin: 0 auto;
+        position: relative;
     }
 
     .envelope-flap {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+
+        border-left: 140px solid transparent;
+        border-right: 140px solid transparent;
+        border-top: 90px solid var(--primary-pink);
+    }
 
 }
 
