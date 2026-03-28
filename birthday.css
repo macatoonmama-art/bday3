@@ -392,27 +392,28 @@ html, body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     perspective: 1000px;
 }
-
 @media (max-width: 480px) {
 
     .envelope {
         width: 280px;
         height: 180px;
         margin: 0 auto 30px;
-        position: relative;
+        position: relative; /* Make sure parent has position relative */
     }
 
     .envelope-flap {
         position: absolute;
         top: 0;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 0;
+        right: 0; /* Add this to help with centering */
+        margin: 0 auto; /* Center horizontally */
         
-        border-left: 140px solid transparent;
-        border-right: 140px solid transparent;
+        /* Calculate border values based on envelope width */
+        border-left: 140px solid transparent;  /* Half of 280px */
+        border-right: 140px solid transparent; /* Half of 280px */
         border-top: 90px solid var(--primary-pink);
         
-        width: 0;
+        width: 0; /* Important for triangle shape */
     }
 }
 
